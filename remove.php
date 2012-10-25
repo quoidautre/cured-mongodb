@@ -42,12 +42,12 @@ if($clients_count > 0){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="index.html">cured-mongodb</a>
+                    <a class="brand" href="index.html"><img src="img/logo-mongodb-icon.png" alt="mongodb logo"> cured-mongodb</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li class="active"><a href="view.php">View</a></li>
+                            <li><a href="view.php">View</a></li>
                             <li><a href="add.php">Add</a></li>
-                            <li><a href="remove.php">Remove</a></li>
+                            <li class="active"><a href="remove.php">Remove</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -62,7 +62,7 @@ if($clients_count > 0){
                 ?>
                 </div>
                 <div class="span12">
-                <h2><?php echo $clients_count . ' records found<br/>';?></h2>
+                <h2><?php echo $clients_count . ' record(s) found<br/>';?></h2>
                     <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
@@ -76,7 +76,7 @@ if($clients_count > 0){
                     <tbody>
                         <?php foreach($clients as $client){ ?>
                         <tr>
-                            <td><button type="button" class="btn btn-danger" id="<?php echo $client['_id']; ?>">Delete</button></td>
+                            <td><button type="button" class="btn btn-danger btn-small" id="<?php echo $client['_id']; ?>">Delete</button></td>
                             <td class="edit" id="<?php echo $client['_id']; ?> name"><?php echo $client['name']; ?></td>
                             <td class="edit" id="<?php echo $client['_id']; ?> address"><?php echo $client['address']; ?></td>
                             <td class="edit" id="<?php echo $client['_id']; ?> city"><?php echo $client['city']; ?></td>

@@ -57,7 +57,7 @@ if (!$_SESSION['loggedIn']): ?>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="index.html">cured-mongodb</a>
+                    <a class="brand" href="index.html"><img src="img/logo-mongodb-icon.png" alt="mongodb logo"> cured-mongodb</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li><a href="app/view.php">View</a></li>

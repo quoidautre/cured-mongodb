@@ -1,3 +1,15 @@
 .control-group, .controls{
 	display: inline-block;
 }
+.navbar .brand{
+	padding: 5px 20px 5px;
+}
+.span4{
+	text-align:center;
+}
+.btn{
+	margin: 10px 0;
+}
+footer a{
+	color: #999;
+}

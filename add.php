@@ -36,7 +36,7 @@ require_once('config.php');
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="index.html">cured-mongodb</a>
+                    <a class="brand" href="index.html"><img src="img/logo-mongodb-icon.png" alt="mongodb logo"> cured-mongodb</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li><a href="view.php">View</a></li>
@@ -77,7 +77,7 @@ require_once('config.php');
                             </div>
                         </div>
 					  <hr>
-					  <button type="submit" class="btn btn-large btn-primary">Insert Collection</button>
+					  <button type="submit" class="btn btn-large btn-inverse">Insert Collection</button>
 					</form>
                 </div>
             </div>
