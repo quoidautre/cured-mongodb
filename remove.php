@@ -76,11 +76,11 @@ if($clients_count > 0){
                     <tbody>
                         <?php foreach($clients as $client){ ?>
                         <tr>
-                            <td><button type="button" class="btn btn-danger" id="<?php echo $venue['_id']; ?>">Delete</button></td>
-                            <td class="edit" id="<?php echo $venue['_id']; ?> name"><?php echo $venue['name']; ?></td>
-                            <td class="edit" id="<?php echo $venue['_id']; ?> address"><?php echo $venue['address']; ?></td>
-                            <td class="edit" id="<?php echo $venue['_id']; ?> city"><?php echo $venue['city']; ?></td>
-                            <td class="edit" id="<?php echo $venue['_id']; ?> state"><?php echo $venue['state']; ?></td>
+                            <td><button type="button" class="btn btn-danger" id="<?php echo $client['_id']; ?>">Delete</button></td>
+                            <td class="edit" id="<?php echo $client['_id']; ?> name"><?php echo $client['name']; ?></td>
+                            <td class="edit" id="<?php echo $client['_id']; ?> address"><?php echo $client['address']; ?></td>
+                            <td class="edit" id="<?php echo $client['_id']; ?> city"><?php echo $client['city']; ?></td>
+                            <td class="edit" id="<?php echo $client['_id']; ?> state"><?php echo $client['state']; ?></td>
                         </tr>
                         <?php } ?>
                     </tbody>
