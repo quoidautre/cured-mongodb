@@ -2,6 +2,8 @@
 require('access.php');
 require_once('config.php');
 
+//$venues = $collection->find();
+//$venues_count = $venues->count();
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -56,9 +58,13 @@ require_once('config.php');
                     exit;
                 }
                 echo new MongoId($_GET['id']); ?></h2>
-                    <pre contenteditable="true">
-<?php echo json_format(json_encode($collection->findOne(array('_id' => new MongoId($_GET['id'])), array('events'))));?>
+                    <pre>
+<p class="edit" id="source"><?php echo json_format(json_encode($collection->findOne(array('_id' => new MongoId($_GET['id'])), array('events'))));?></p>
                     </pre>
+                    <a id="jsonLint" class="btn btn-inverse jsonLint" href="#">Run JSONLint »</a>
+                </div>
+                <div class="span12">
+                    <div id="result"></div>
                 </div>
             </div>
             <hr>
@@ -70,95 +76,31 @@ require_once('config.php');
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/editinplace.js"></script>
+        <script src="js/json2.js"></script>
+        <script src="js/jsonlint.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
+                // edit in place
                 $(".edit").editInPlace({
+                    field_type: "textarea",
                     url: "saved.php",
+                    fullCollection: "true"
                 });
-                
+                // jsonlint https://github.com/zaach/jsonlint
+                document.getElementById("jsonLint").onclick = function () {
+                  try {
+                    var result = jsonlint.parse(document.getElementById("source").innerHTML);
+                    if (result) {
+                      document.getElementById("result").innerHTML = "<pre id='output'>JSON is valid!</pre>";
+                      document.getElementById("output").className = "success";
+                    }
+                  } catch(e) {
+                    document.getElementById("result").innerHTML = "<pre id='output'>"+e+"</pre>";
+                    document.getElementById("output").className = "error";
+                  }
+                };
              });
         </script>
-        <script src="js/main.js"></script>
+        <!--<script src="js/main.js"></script>-->
     </body>
 </html>
-
-<?php
-// http://www.php.net/manual/en/function.json-encode.php#80339
-function json_format($json) 
-{ 
-    $tab = "  "; 
-    $new_json = ""; 
-    $indent_level = 0; 
-    $in_string = false; 
-
-    $json_obj = json_decode($json); 
-
-    if($json_obj === false) 
-        return false; 
-
-    $json = json_encode($json_obj); 
-    $len = strlen($json); 
-
-    for($c = 0; $c < $len; $c++) 
-    { 
-        $char = $json[$c]; 
-        switch($char) 
-        { 
-            case '{': 
-            case '[': 
-                if(!$in_string) 
-                { 
-                    $new_json .= $char . "\n" . str_repeat($tab, $indent_level+1); 
-                    $indent_level++; 
-                } 
-                else 
-                { 
-                    $new_json .= $char; 
-                } 
-                break; 
-            case '}': 
-            case ']': 
-                if(!$in_string) 
-                { 
-                    $indent_level--; 
-                    $new_json .= "\n" . str_repeat($tab, $indent_level) . $char; 
-                } 
-                else 
-                { 
-                    $new_json .= $char; 
-                } 
-                break; 
-            case ',': 
-                if(!$in_string) 
-                { 
-                    $new_json .= ",\n" . str_repeat($tab, $indent_level); 
-                } 
-                else 
-                { 
-                    $new_json .= $char; 
-                } 
-                break; 
-            case ':': 
-                if(!$in_string) 
-                { 
-                    $new_json .= ": "; 
-                } 
-                else 
-                { 
-                    $new_json .= $char; 
-                } 
-                break; 
-            case '"': 
-                if($c > 0 && $json[$c-1] != '\\') 
-                { 
-                    $in_string = !$in_string; 
-                } 
-            default: 
-                $new_json .= $char; 
-                break;                    
-        } 
-    } 
-
-    return $new_json; 
-} 
-?>

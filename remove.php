@@ -66,6 +66,8 @@ if($clients_count > 0){
                     <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
+                            <!--<th>update</th>-->
+                            <!--<th>_id</th>-->
                             <th>Delete</th>
                             <th>name</th>
                             <th>address</th>
@@ -76,7 +78,9 @@ if($clients_count > 0){
                     <tbody>
                         <?php foreach($clients as $client){ ?>
                         <tr>
-                            <td><button type="button" class="btn btn-danger btn-small" id="<?php echo $client['_id']; ?>">Delete</button></td>
+                            <!--<td><a href="update_user.php?name=<?php echo $v['name']; ?>"><?php echo $v['id']; ?>click</a></td>-->
+                            <!--<td><?php echo $v['_id']; ?></td>-->
+                            <td style="text-align:center;"><button type="button" class="btn btn-danger btn-small" id="<?php echo $client['_id']; ?>">Delete</button></td>
                             <td class="edit" id="<?php echo $client['_id']; ?> name"><?php echo $client['name']; ?></td>
                             <td class="edit" id="<?php echo $client['_id']; ?> address"><?php echo $client['address']; ?></td>
                             <td class="edit" id="<?php echo $client['_id']; ?> city"><?php echo $client['city']; ?></td>

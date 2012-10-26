@@ -18,10 +18,10 @@ $city = $_POST['city'];
 $state = $_POST['state'];
 
 // build the array for insertion
-$insertCollection = array('name'=>$name, 'address'=>$address, 'city'=>$city, 'state'=>$state);
+$client = array('name'=>$name, 'address'=>$address, 'city'=>$city, 'state'=>$state);
 
 // insert new array into database
-$collection->insert($insertCollection);
+$collection->insert($client);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -73,7 +73,7 @@ $collection->insert($insertCollection);
             <div class="row">
                 <div class="span4">
                     <h2>Success</h2>
-                    <pre><?php print_r($insertCollection) ?></pre>
+<pre><?php echo print_r(json_format(json_encode($client))); ?></pre>
                 </div>
             </div>
             <hr>

@@ -10,6 +10,20 @@
 .btn{
 	margin: 10px 0;
 }
+.success{
+	color: #468847;
+	border-color: #468847;
+}
+.error{
+	color: #B94A48;
+	border-color: #B94A48;
+}
+.align-right{text-align: right;}
+textarea{
+	width: 99%;
+	min-height: 440px;
+}
+
 footer a{
 	color: #999;
 }

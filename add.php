@@ -55,7 +55,7 @@ require_once('config.php');
                         <div class="control-group">
                             <label class="control-label" for="name"></label>
                             <div class="controls">
-                                <input type="text" id="name" name="name" placeholder="Name">
+                                <input type="text" id="name" name="name" placeholder="Venue Name">
                             </div>
                         </div>
                         <div class="control-group">
