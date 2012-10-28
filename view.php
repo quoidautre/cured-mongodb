@@ -55,64 +55,42 @@ if($clients_count > 0){
         </div>
         <div class="container">
             <div class="row">
-                <div class="span4">
-                <?php 
-                    /*$allCollections = $db->getCollectionNames();
-                    var_dump($allCollections);*/
-                ?>
-                </div>
                 <div class="">
                 <h2><?php echo $clients_count . ' record(s) found<br/>';?></h2>
                     <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>name</th>
-                            <th>address</th>
-                            <th>city</th>
-                            <th>state</th>
+                            <?php
+                                // building table head with keys
+                                $cursor = $collection->find();
+                                $array = iterator_to_array($cursor);
+                                $keys = array();
+                                foreach ($array as $k => $v) {
+                                        foreach ($v as $a => $b) {
+                                                $keys[] = $a;
+                                        }
+                                }
+                                $keys = array_values(array_unique($keys));
+                                // assuming first key is MongoID so skipping it
+                                foreach (array_slice($keys,1) as $key => $value) {
+                                    echo "<th>" . $value . "</th>";
+                                }
+                            ?>
                         </tr>
+
                     </thead>
                     <tbody>
-                        <?php foreach($clients as $client){ ?>
-                        <tr>
-                            <td class="edit" id="<?php echo $client['_id'];?> name">
-                                <?php
-                                    if(is_array($client['name'])) {
-                                        echo "<button id='" . $client['_id'] . "'type='button' class='btn btn-inverse btn-small'>Object</button>";
-                                    } else {
-                                        echo $client['name'];
+                        <?php
+                            $cursor = $collection->find();
+                            $cursor_count = $cursor->count();
+                                foreach ($cursor as $venue) {
+                                    echo "<tr>";
+                                    foreach (array_slice($keys,1) as $key => $value) {
+                                       echo "<td class='edit'>" . $venue[$value] . "</td>";
                                     }
-                                ?>
-                            </td>
-                            <td class="edit" id="<?php echo $client['_id'];?> address">
-                                <?php
-                                    if(is_array($client['address'])) {
-                                        echo "<button id='" . $client['_id'] . "'type='button' class='btn btn-inverse btn-small'>Object</button>";
-                                    } else {
-                                        echo $client['address'];
-                                    }
-                                ?>
-                            </td>
-                            <td class="edit" id="<?php echo $client['_id'];?> city">
-                                <?php
-                                    if(is_array($client['city'])) {
-                                        echo "<button id='" . $client['_id'] . "'type='button' class='btn btn-inverse btn-small'>Object</button>";
-                                    } else {
-                                        echo $client['city'];
-                                    }
-                                ?>
-                            </td>
-                            <td class="edit" id="<?php echo $client['_id'];?> state">
-                                <?php
-                                    if(is_array($client['state'])) {
-                                        echo "<button id='" . $client['_id'] . "'type='button' class='btn btn-inverse btn-small'>Object</button>";
-                                    } else {
-                                        echo $client['state'];
-                                    }
-                                ?>
-                            </td>
-                        </tr>
-                        <?php } ?>
+                                    echo "</tr>";
+                                }
+                        ?>
                     </tbody>
                     </table>
                 </div>
