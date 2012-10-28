@@ -2,10 +2,7 @@
 require('access.php');
 require_once('config.php');
 
-$clients = $collection->find();
-$clients_count = $clients->count();
-
-if($clients_count > 0){
+if($cursor_count > 0){
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +53,7 @@ if($clients_count > 0){
         <div class="container">
             <div class="row">
                 <div class="">
-                <h2><?php echo $clients_count . ' record(s) found<br/>';?></h2>
+                <h2><?php echo $cursor_count . ' record(s) found<br/>';?></h2>
                     <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
@@ -86,7 +83,7 @@ if($clients_count > 0){
                                 foreach ($cursor as $venue) {
                                     echo "<tr>";
                                     foreach (array_slice($keys,1) as $key => $value) {
-                                       echo "<td class='edit'>" . $venue[$value] . "</td>";
+                                       echo "<td class='edit' id='" . $venue['_id'] . " " . $value . "'>" . $venue[$value] . "</td>";
                                     }
                                     echo "</tr>";
                                 }

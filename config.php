@@ -4,8 +4,14 @@ require('access.php');
 // create mongodb connection
 $conn = new Mongo();
 
+// setup db connection
 $db = $conn->placeholderDB;
+// choose collection
 $collection = $db->placeholderCollection;
+// build cursor
+$cursor = $collection->find();
+// build cursor count
+$cursor_count = $cursor->count();
 
 // i.e.
 // $db = $conn->customers;
