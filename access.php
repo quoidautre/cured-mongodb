@@ -63,9 +63,9 @@ if (!$_SESSION['loggedIn']): ?>
                     <a class="brand" href="index.html"><img src="img/logo-mongodb-icon.png" alt="mongodb logo"> cured-mongodb</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li><a href="app/view.php">View</a></li>
-                            <li><a href="app/add.php">Add</a></li>
-                            <li><a href="app/remove.php">Remove</a></li>
+                            <li><a href="view.php">View</a></li>
+                            <li><a href="add.php">Add</a></li>
+                            <li><a href="remove.php">Remove</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
