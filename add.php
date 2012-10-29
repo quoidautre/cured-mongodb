@@ -74,7 +74,7 @@ $keys = array_values(array_unique($keys));
                     </form>
                     <hr>
                     <h3>Add New Document</h3>
-					<form class="form-inline" action="post.php" method="post" id="addCollection">
+					<form class="form-inline" action="post.php" method="post">
                         <?php
                             // assuming first key is MongoID so skipping it
                             foreach (array_slice($keys,1) as $key => $value) {
@@ -99,7 +99,6 @@ $keys = array_values(array_unique($keys));
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/validate.min.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
