@@ -53,7 +53,7 @@ if($cursor_count > 0){
         <div class="container">
             <div class="row">
                 <div class="span12">
-                <h2><?php echo $cursor_count . ' record(s) found<br/>';?></h2>
+                <h2><?php echo $cursor_count . ' document(s) found<br/>';?></h2>
                     <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
