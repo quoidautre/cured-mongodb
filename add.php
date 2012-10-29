@@ -1,6 +1,18 @@
 <?php
 require('access.php');
 require_once('config.php');
+
+// building table head with keys
+$cursor = $collection->find();
+$array = iterator_to_array($cursor);
+$keys = array();
+foreach ($array as $k => $v) {
+        foreach ($v as $a => $b) {
+                $keys[] = $a;
+        }
+}
+$keys = array_values(array_unique($keys));
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -50,7 +62,7 @@ require_once('config.php');
         <div class="container">
             <div class="row">
                 <div class="span12">
-                <h3>Add New Field</h3>
+                    <h3>Add New Field</h3>
                     <form class="form-inline" action="post.php" method="post">
                         <div class="control-group">
                             <label class="control-label" for="newField"></label>
@@ -64,16 +76,6 @@ require_once('config.php');
                     <h3>Add New Document</h3>
 					<form class="form-inline" action="post.php" method="post" id="addCollection">
                         <?php
-                            // building table head with keys
-                            $cursor = $collection->find();
-                            $array = iterator_to_array($cursor);
-                            $keys = array();
-                            foreach ($array as $k => $v) {
-                                    foreach ($v as $a => $b) {
-                                            $keys[] = $a;
-                                    }
-                            }
-                            $keys = array_values(array_unique($keys));
                             // assuming first key is MongoID so skipping it
                             foreach (array_slice($keys,1) as $key => $value) {
                                 echo "<div class='control-group'>
