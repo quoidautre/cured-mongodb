@@ -74,7 +74,6 @@ if($cursor_count > 0){
                                 }
                             ?>
                         </tr>
-
                     </thead>
                     <tbody>
                         <?php

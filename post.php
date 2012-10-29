@@ -1,29 +1,20 @@
 <?php
 require('access.php');
 require_once('config.php');
-/*
-// prevent blank inserts
-if(empty($_POST)) {
-    // exit script
-    echo "Use <a href='add.php'>Add</a> to insert a new collection.";
-    exit;
-} else {
-    // do nothing
-}*/
 
-
+// exit if blank $_POST
 if(empty($_POST)) {
     echo "Use <a href='add.php'>Add</a> to insert a new collection.";
     exit;
+
+// create a new field in all documents
 } elseif(!empty($_POST['newField'])) {
     $collection->update(array(), array('$set' => array($_POST['newField'] => "")), array("multiple" => true));
 
+// create a new document
 } elseif(empty($_POST['newField']) && !empty($_POST)) {
-
     $collection->insert($_POST);
 }
-
-
 
 ?>
 <!DOCTYPE html>
