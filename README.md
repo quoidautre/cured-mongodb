@@ -1,4 +1,4 @@
-![GitHub Logo](http://i.imgur.com/HRZ9t.jpg)
+![GitHub Logo](http://i.imgur.com/wjZ7R.png)
 cured-mongodb - An overly simple CRUD App for MongoDB with in-place editing
 ===================================================================================
 
