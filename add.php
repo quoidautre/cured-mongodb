@@ -50,8 +50,19 @@ require_once('config.php');
         <div class="container">
             <div class="row">
                 <div class="span12">
-					<form class="form-inline" action="post.php" method="post" id="addCollection">                                
-					   <legend>Add</legend>               
+                <h3>Add New Field</h3>
+                    <form class="form-inline" action="post.php" method="post">
+                        <div class="control-group">
+                            <label class="control-label" for="newField"></label>
+                            <div class="controls">
+                                <input type="text" placeholder="Add field to all documents" name="newField">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-small btn-inverse">Add Field</button>
+                    </form>
+                    <hr>
+                    <h3>Add New Document</h3>
+					<form class="form-inline" action="post.php" method="post" id="addCollection">
                         <?php
                             // building table head with keys
                             $cursor = $collection->find();
@@ -74,7 +85,7 @@ require_once('config.php');
                             }
                         ?>
 					  <hr>
-					  <button type="submit" class="btn btn-large btn-inverse">Insert Collection</button>
+					  <button type="submit" class="btn btn-large btn-inverse">Insert Document</button>
 					</form>
                 </div>
             </div>

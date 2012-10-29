@@ -1,18 +1,29 @@
 <?php
 require('access.php');
 require_once('config.php');
-
+/*
 // prevent blank inserts
 if(empty($_POST)) {
-	// do nothing
+    // exit script
+    echo "Use <a href='add.php'>Add</a> to insert a new collection.";
+    exit;
 } else {
-	// exit script
-	echo "Use <a href='add.php'>Add</a> to insert a new collection.";
-	exit;
+    // do nothing
+}*/
+
+
+if(empty($_POST)) {
+    echo "Use <a href='add.php'>Add</a> to insert a new collection.";
+    exit;
+} elseif(!empty($_POST['newField'])) {
+    $collection->update(array(), array('$set' => array($_POST['newField'] => "")), array("multiple" => true));
+
+} elseif(empty($_POST['newField']) && !empty($_POST)) {
+
+    $collection->insert($_POST);
 }
 
-// insert the form data
-$collection->insert($_POST);
+
 
 ?>
 <!DOCTYPE html>
@@ -65,7 +76,15 @@ $collection->insert($_POST);
             <div class="row">
                 <div class="span4">
                     <h2>Success</h2>
-<pre><?php echo print_r(json_format(json_encode($_POST))); ?></pre>
+                        <?php
+                            if(!empty($_POST['newField'])) {
+                                echo "<p>Added new field to all documents: " . $_POST['newField'] . "</p>";
+                            } else {
+                                echo "<pre>";
+                                print_r(json_format(json_encode($_POST)));
+                                echo "</pre>";
+                            }
+                        ?>
                 </div>
             </div>
             <hr>
