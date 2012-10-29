@@ -3,7 +3,7 @@ require('access.php');
 require_once('config.php');
 
 // prevent blank inserts
-if(isset($_POST['name'])) {
+if(empty($_POST)) {
 	// do nothing
 } else {
 	// exit script
@@ -11,17 +11,9 @@ if(isset($_POST['name'])) {
 	exit;
 }
 
-// prettify the post vars
-$name = $_POST['name'];
-$address = $_POST['address'];
-$city = $_POST['city'];
-$state = $_POST['state'];
+// insert the form data
+$collection->insert($_POST);
 
-// build the array for insertion
-$client = array('name'=>$name, 'address'=>$address, 'city'=>$city, 'state'=>$state);
-
-// insert new array into database
-$collection->insert($client);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -73,7 +65,7 @@ $collection->insert($client);
             <div class="row">
                 <div class="span4">
                     <h2>Success</h2>
-<pre><?php echo print_r(json_format(json_encode($client))); ?></pre>
+<pre><?php echo print_r(json_format(json_encode($_POST))); ?></pre>
                 </div>
             </div>
             <hr>

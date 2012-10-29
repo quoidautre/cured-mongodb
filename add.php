@@ -50,32 +50,29 @@ require_once('config.php');
         <div class="container">
             <div class="row">
                 <div class="span12">
-					<form class="form-inline" action="post.php" method="post" id="addCollection">
-					  <legend>Add</legend>               
-                        <div class="control-group">
-                            <label class="control-label" for="name"></label>
-                            <div class="controls">
-                                <input type="text" id="name" name="name" placeholder="Venue Name">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="address"></label>
-                            <div class="controls">
-                                <input type="text" id="address" name="address" placeholder="Street Address">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="city"></label>
-                            <div class="controls">
-                                <input type="text" id="city" name="city" placeholder="City">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="state"></label>
-                            <div class="controls">
-                                <input type="text" id="state" name="state" placeholder="State">
-                            </div>
-                        </div>
+					<form class="form-inline" action="post.php" method="post" id="addCollection">                                
+					   <legend>Add</legend>               
+                        <?php
+                            // building table head with keys
+                            $cursor = $collection->find();
+                            $array = iterator_to_array($cursor);
+                            $keys = array();
+                            foreach ($array as $k => $v) {
+                                    foreach ($v as $a => $b) {
+                                            $keys[] = $a;
+                                    }
+                            }
+                            $keys = array_values(array_unique($keys));
+                            // assuming first key is MongoID so skipping it
+                            foreach (array_slice($keys,1) as $key => $value) {
+                                echo "<div class='control-group'>
+                                        <label class='control-label' for='name'></label>
+                                        <div class='controls'>";
+                                echo "      <input type='text' placeholder='" . $value . "' name='" . $value . "' id='" . $value . "'>";
+                                echo "  </div>
+                                      </div>";
+                            }
+                        ?>
 					  <hr>
 					  <button type="submit" class="btn btn-large btn-inverse">Insert Collection</button>
 					</form>
